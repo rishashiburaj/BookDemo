@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ExecutionException;
-
 @Service
 @Slf4j
 public class BookProducer {
@@ -19,9 +17,9 @@ public class BookProducer {
     @Value("${spring.kafka.order.topic}")
     private String  bookTopic;
 
-    public void sendBookDetails(Book book) throws ExecutionException, InterruptedException{
+    public void sendBookDetails(Book book) throws InterruptedException {
         kafkaTemplate.send(bookTopic, book);
-        log.info("Book {} sent to topic: {}  " , book, bookTopic);
+        log.info("Book {} sent to topic: {}  ", book, bookTopic);
 
     }
 }
