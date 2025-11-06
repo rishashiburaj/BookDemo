@@ -1,6 +1,8 @@
 package org.example.bookdemo;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.KafkaException;
+import org.apache.kafka.common.errors.InterruptException;
 import org.example.bookdemo.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,9 +21,9 @@ public class BookProducer {
     @Value("${spring.kafka.order.topic}")
     private String  bookTopic;
 
-    public void sendBookDetails(Book book) throws ExecutionException, InterruptedException{
+    public void sendBookDetails(Book book) throws InterruptedException {
         kafkaTemplate.send(bookTopic, book);
-        log.info("Book {} sent to topic: {}  " , book, bookTopic);
+        log.info("Book {} sent to topic: {}  ", book, bookTopic);
 
     }
 }
