@@ -1,19 +1,17 @@
 package org.example.bookdemo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.bookdemo.entity.Book;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import org.slf4j.Logger;
 
 import java.util.concurrent.ExecutionException;
 
 @Service
+@Slf4j
 public class BookProducer {
-
-    private static final Logger log = LoggerFactory.getLogger(BookProducer.class);
 
     @Autowired
     public KafkaTemplate<String, Book> kafkaTemplate;
